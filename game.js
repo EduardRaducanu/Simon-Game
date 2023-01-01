@@ -1,7 +1,6 @@
 var buttonColors = ["red", "blue", "green", "yellow"];
 var gamePattern =[];
 var userClickedPattern = [];
-
 var gameStart = false;
 var level = 0;
 
@@ -22,32 +21,23 @@ function playSound(name) {
     audio.play();
 }
 
-
 function startOver(){
     level = 0;
     gamePattern= [];
     gameStart = false;
 }
 
-$(".btn").on("click", function (){
-    
+$(".btn").on("click", function (){ 
     var userChosenColor = this.id;
-    
     userClickedPattern.push(userChosenColor);
-    
     playSound(userChosenColor);
-
     animatePress(userChosenColor);
-
     checkAnswer(userClickedPattern.length-1);
 });
 
 function checkAnswer(currentLevel){
-
     if(userClickedPattern[currentLevel] === gamePattern[currentLevel]){
-
         console.log("ok");
-
         if(userClickedPattern.length === gamePattern.length){
             setTimeout(function () {
                 nextSequence();
@@ -65,13 +55,10 @@ function checkAnswer(currentLevel){
 }
 
 function nextSequence() {
-
     userClickedPattern = [];
-
-    level++;
-    
+    level++;  
     $("#level-title").text("level " + level)
-    
+
     //creating a variable that stores a random number from 0 -> 3
     var randomNumber = Math.floor(Math.random()*4);
     
